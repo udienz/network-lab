@@ -1,71 +1,4 @@
-100.121.0.4
-spawn ssh -x -l mahyuddin+ct200w 100.121.0.4
-Warning: Permanently added '100.121.0.4' (RSA) to the list of known hosts.
-mahyuddin+ct200w@100.121.0.4's password: 
-
-
-
-
-
-
-
-
-  MMM      MMM       KKK                          TTTTTTTTTTT      KKK
-  MMMM    MMMM       KKK                          TTTTTTTTTTT      KKK
-  MMM MMMM MMM  III  KKK  KKK  RRRRRR     OOOOOO      TTT     III  KKK  KKK
-  MMM  MM  MMM  III  KKKKK     RRR  RRR  OOO  OOO     TTT     III  KKKKK
-  MMM      MMM  III  KKK KKK   RRRRRR    OOO  OOO     TTT     III  KKK KKK
-  MMM      MMM  III  KKK  KKK  RRR  RRR   OOOOOO      TTT     III  KKK  KKK
-
-  MikroTik RouterOS 6.44.2 (c) 1999-2019       http://www.mikrotik.com/
-
-[?]             Gives the list of available commands
-command [?]     Gives help on the command and list of arguments
-
-[Tab]           Completes the command/word. If the input is ambiguous,
-                a second [Tab] gives possible options
-
-/               Move up to base level
-..              Move up one level
-/command        Use command at the base level
-[9999B[9999B[9999B[mahyuddin@R4] > /system history print without-paging
-Flags: U - undoable, R - redoable, F - floating-undo 
-  ACTION                                   BY                                                                           POLICY                                                                         
-
-[9999B[mahyuddin@R4] > /system package print detail without-paging
-Flags: X - disabled 
- 0   name="routeros-x86" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" 
-
- 1   name="system" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 2 X name="ipv6" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 3   name="ups" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 4   name="wireless" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 5   name="hotspot" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 6   name="mpls" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 7   name="routing" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 8   name="ppp" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
- 9   name="dhcp" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
-10   name="security" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
-11   name="advanced-tools" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
-
-12   name="dude" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" 
-
-[9999B[mahyuddin@R4] > /export
-# oct/11/2019 02:39:13 by RouterOS 6.44.2
-# software id = 
-#
-#
-#
+[mahyuddin@R4] > /export
 /interface bridge
 add name=br-vpls-e6
 add name=loopback0
@@ -141,8 +74,7 @@ add area=cust-vrf-b network=100.123.0.14/32
 set name=R4
 /tool romon
 set enabled=yes
-[9999B[mahyuddin@R4] > /quit
-interrupted
-7[;70r8Connection to 100.121.0.4 closed.
 
-Error: EOF received
+
+
+[mahyuddin@R4] > /quit
