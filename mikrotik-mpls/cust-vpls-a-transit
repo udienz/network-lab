@@ -1,0 +1,121 @@
+100.122.0.0
+spawn ssh -x -l mahyuddin+ct200w 100.122.0.0
+Warning: Permanently added '100.122.0.0' (RSA) to the list of known hosts.
+mahyuddin+ct200w@100.122.0.0's password: 
+
+
+
+
+
+
+
+
+  MMM      MMM       KKK                          TTTTTTTTTTT      KKK
+  MMMM    MMMM       KKK                          TTTTTTTTTTT      KKK
+  MMM MMMM MMM  III  KKK  KKK  RRRRRR     OOOOOO      TTT     III  KKK  KKK
+  MMM  MM  MMM  III  KKKKK     RRR  RRR  OOO  OOO     TTT     III  KKKKK
+  MMM      MMM  III  KKK KKK   RRRRRR    OOO  OOO     TTT     III  KKK KKK
+  MMM      MMM  III  KKK  KKK  RRR  RRR   OOOOOO      TTT     III  KKK  KKK
+
+  MikroTik RouterOS 6.44.2 (c) 1999-2019       http://www.mikrotik.com/
+
+[?]             Gives the list of available commands
+command [?]     Gives help on the command and list of arguments
+
+[Tab]           Completes the command/word. If the input is ambiguous,
+                a second [Tab] gives possible options
+
+/               Move up to base level
+..              Move up one level
+/command        Use command at the base level
+[9999B[9999B[9999B[mahyuddin@cust-vpls-a-transit] > /system history print without-paging
+Flags: U - undoable, R - redoable, F - floating-undo 
+  ACTION                                   BY                                                                           POLICY                                                                         
+
+[9999B[mahyuddin@cust-vpls-a-transit] > /system package print detail without-paging
+Flags: X - disabled 
+ 0   name="routeros-x86" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" 
+
+ 1   name="system" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 2 X name="ipv6" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 3   name="ups" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 4   name="wireless" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 5   name="hotspot" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 6   name="mpls" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 7   name="routing" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 8   name="ppp" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 9   name="dhcp" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+10   name="security" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+11   name="advanced-tools" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+12   name="dude" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" 
+
+[9999B[mahyuddin@cust-vpls-a-transit] > /export
+# oct/11/2019 03:00:47 by RouterOS 6.44.2
+# software id = 
+#
+#
+#
+/interface bridge
+add name=loopback0
+/interface ethernet
+set [ find default-name=ether1 ] disable-running-check=no mtu=9000
+set [ find default-name=ether2 ] disable-running-check=no mtu=9000
+set [ find default-name=ether3 ] disable-running-check=no mtu=9000
+set [ find default-name=ether4 ] disable-running-check=no mtu=9000
+set [ find default-name=ether5 ] disable-running-check=no mtu=9000
+set [ find default-name=ether6 ] disable-running-check=no mtu=9000
+set [ find default-name=ether7 ] disable-running-check=no mtu=9000
+set [ find default-name=ether8 ] disable-running-check=no mtu=9000
+set [ find default-name=ether9 ] disable-running-check=no mtu=9000
+set [ find default-name=ether10 ] disable-running-check=no mtu=9000
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/routing bgp instance
+set default as=65010 cluster-id=100.122.0.0 router-id=100.122.0.0
+/routing ospf instance
+set [ find default=yes ] distribute-default=always-as-type-1 mpls-te-area=backbone mpls-te-router-id=loopback0 redistribute-connected=as-type-1 redistribute-static=as-type-1 router-id=100.122.0.0
+/ip address
+add address=100.122.0.0 interface=loopback0 network=100.122.0.0
+add address=100.122.241.10/28 interface=ether1 network=100.122.241.0
+add address=100.122.242.10/28 interface=ether2 network=100.122.242.0
+add address=100.122.243.10/28 interface=ether3 network=100.122.243.0
+add address=100.122.244.10/28 interface=ether4 network=100.122.244.0
+add address=100.122.245.10/28 interface=ether5 network=100.122.245.0
+add address=100.122.246.10/28 interface=ether6 network=100.122.246.0
+add address=100.122.247.10/28 interface=ether7 network=100.122.247.0
+add address=100.121.10.2/30 interface=ether10 network=100.121.10.0
+/ip dhcp-client
+add disabled=no interface=ether1
+/mpls ldp
+set enabled=yes loop-detect=yes lsr-id=100.122.0.0 transport-address=100.122.0.0
+/mpls ldp interface
+add interface=loopback0 transport-address=100.122.0.0
+add interface=ether2 transport-address=100.122.0.0
+add interface=ether3 transport-address=100.122.0.0
+/routing bgp network
+add network=100.122.0.0/16 synchronize=no
+/routing bgp peer
+add name=upstream remote-address=100.121.10.1 remote-as=138074 ttl=default
+/routing ospf network
+add area=backbone network=100.122.0.0/32
+add area=backbone network=100.122.241.0/28
+/system identity
+set name=cust-vpls-a-transit
+/tool romon
+set enabled=yes
+[9999B[mahyuddin@cust-vpls-a-transit] > /quit
+interrupted
+7[;70r8Connection to 100.122.0.0 closed.
+
+Error: EOF received

@@ -1,0 +1,151 @@
+100.121.0.3
+spawn ssh -x -l mahyuddin+ct200w 100.121.0.3
+Warning: Permanently added '100.121.0.3' (RSA) to the list of known hosts.
+mahyuddin+ct200w@100.121.0.3's password: 
+
+
+
+
+
+
+
+
+  MMM      MMM       KKK                          TTTTTTTTTTT      KKK
+  MMMM    MMMM       KKK                          TTTTTTTTTTT      KKK
+  MMM MMMM MMM  III  KKK  KKK  RRRRRR     OOOOOO      TTT     III  KKK  KKK
+  MMM  MM  MMM  III  KKKKK     RRR  RRR  OOO  OOO     TTT     III  KKKKK
+  MMM      MMM  III  KKK KKK   RRRRRR    OOO  OOO     TTT     III  KKK KKK
+  MMM      MMM  III  KKK  KKK  RRR  RRR   OOOOOO      TTT     III  KKK  KKK
+
+  MikroTik RouterOS 6.44.2 (c) 1999-2019       http://www.mikrotik.com/
+
+[?]             Gives the list of available commands
+command [?]     Gives help on the command and list of arguments
+
+[Tab]           Completes the command/word. If the input is ambiguous,
+                a second [Tab] gives possible options
+
+/               Move up to base level
+..              Move up one level
+/command        Use command at the base level
+[9999B[9999Boct/09/2019 07:25:16 system,error,critical router was rebooted without proper shutdown
+oct/09/2019 09:14:22 system,error,critical login failure for user mahyuddin by romon AA:F2:E8:22:BF:A8 via winbox
+oct/11/2019 02:20:10 system,error,critical router was rebooted without proper shutdown
+[9999B[mahyuddin@R3] > /system history print without-paging
+Flags: U - undoable, R - redoable, F - floating-undo 
+  ACTION                                   BY                                                                           POLICY                                                                         
+
+[9999B[mahyuddin@R3] > /system package print detail without-paging
+Flags: X - disabled 
+ 0   name="routeros-x86" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" 
+
+ 1   name="system" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 2 X name="ipv6" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 3   name="ups" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 4   name="wireless" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 5   name="hotspot" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 6   name="mpls" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 7   name="routing" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 8   name="ppp" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+ 9   name="dhcp" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+10   name="security" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+11   name="advanced-tools" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" bundle=routeros-x86 
+
+12   name="dude" version="6.44.2" build-time=apr/01/2019 12:47:57 scheduled="" 
+
+[9999B[mahyuddin@R3] > /export
+# oct/11/2019 02:39:07 by RouterOS 6.44.2
+# software id = 
+#
+#
+#
+/interface bridge
+add name=br-vpls-e6
+add name=loopback0
+add name=loopback0-cust-vrf-b
+/interface ethernet
+set [ find default-name=ether1 ] disable-running-check=no mtu=9000
+set [ find default-name=ether2 ] disable-running-check=no mtu=9000
+set [ find default-name=ether3 ] disable-running-check=no mtu=9000
+set [ find default-name=ether4 ] disable-running-check=no mtu=9000
+set [ find default-name=ether5 ] disable-running-check=no mtu=9000
+set [ find default-name=ether6 ] disable-running-check=no mtu=9000
+set [ find default-name=ether7 ] disable-running-check=no mtu=9000
+set [ find default-name=ether8 ] disable-running-check=no mtu=9000
+set [ find default-name=ether9 ] disable-running-check=no mtu=9000
+set [ find default-name=ether10 ] disable-running-check=no mtu=9000
+/interface vpls
+add disabled=no l2mtu=1500 mac-address=02:3A:D5:57:0D:22 name=vpls-e6-r1 remote-peer=100.121.0.1 vpls-id=6:13
+add mac-address=02:3A:D5:57:0D:22 name=vpls-e6-r2 remote-peer=100.121.0.2 vpls-id=6:23
+add mac-address=02:3A:D5:57:0D:22 name=vpls-e6-r4 remote-peer=100.121.0.4 vpls-id=6:34
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/mpls traffic-eng tunnel-path
+add name=te-tp-dyn
+/interface traffic-eng
+add bandwidth=10Mbps disabled=no from-address=100.121.0.3 name=te-r3-r1 primary-path=te-tp-dyn to-address=100.121.0.1
+add bandwidth=10Mbps disabled=no from-address=100.121.0.3 name=te-r3-r2 primary-path=te-tp-dyn to-address=100.121.0.2
+add bandwidth=10Mbps disabled=no from-address=100.121.0.3 name=te-r3-r4 primary-path=te-tp-dyn to-address=100.121.0.4
+/routing bgp instance
+set default as=138074 router-id=100.121.0.3
+/routing ospf instance
+set [ find default=yes ] mpls-te-area=backbone mpls-te-router-id=loopback0 redistribute-connected=as-type-1 redistribute-static=as-type-1 router-id=100.121.0.3
+add name=ospf1 redistribute-bgp=as-type-1 redistribute-connected=as-type-1 redistribute-static=as-type-1 router-id=100.123.0.13 routing-table=cust-vrf-b
+/routing ospf area
+add instance=ospf1 name=cust-vrf-b
+/interface bridge port
+add bridge=br-vpls-e6 interface=vpls-e6-r1
+add bridge=br-vpls-e6 interface=ether6
+add bridge=br-vpls-e6 disabled=yes interface=vpls-e6-r2
+add bridge=br-vpls-e6 disabled=yes interface=vpls-e6-r4
+/ip address
+add address=100.121.0.3 interface=loopback0 network=100.121.0.3
+add address=100.120.23.3/29 interface=ether3 network=100.120.23.0
+add address=100.123.73.13/28 comment=vrf interface=ether7 network=100.123.73.0
+add address=100.123.0.13 comment=vrf interface=loopback0-cust-vrf-b network=100.123.0.13
+/ip dhcp-client
+add disabled=no interface=ether1
+add dhcp-options=hostname,clientid interface=ether1
+/ip route vrf
+add export-route-targets=58381:4000 import-route-targets=58381:4000 interfaces=loopback0-cust-vrf-b,ether7 route-distinguisher=58381:1 routing-mark=cust-vrf-b
+/mpls ldp
+set enabled=yes loop-detect=yes lsr-id=100.121.0.3 transport-address=100.121.0.3
+/mpls ldp interface
+add interface=loopback0 transport-address=100.121.0.3
+add disabled=yes interface=ether2 transport-address=100.121.0.3
+add interface=ether3 transport-address=100.121.0.3
+/mpls traffic-eng interface
+add bandwidth=1Gbps interface=ether3
+/routing bgp instance vrf
+add redistribute-connected=yes redistribute-ospf=yes redistribute-other-bgp=yes redistribute-static=yes routing-mark=cust-vrf-b
+/routing bgp network
+add network=100.121.0.0/16 synchronize=no
+add network=100.121.3.0/24 synchronize=no
+/routing bgp peer
+add address-families=ip,l2vpn,vpnv4 multihop=yes name=r1 remote-address=100.121.0.1 remote-as=138074 route-reflect=yes ttl=default update-source=loopback0
+add address-families=ip,l2vpn,vpnv4 multihop=yes name=r2 remote-address=100.121.0.2 remote-as=138074 route-reflect=yes ttl=default update-source=loopback0
+add address-families=ip,l2vpn,vpnv4 multihop=yes name=r4 remote-address=100.121.0.4 remote-as=138074 route-reflect=yes ttl=default update-source=loopback0
+/routing ospf network
+add area=backbone network=100.121.0.3/32
+add area=backbone network=100.120.23.0/29
+add area=cust-vrf-b network=100.123.73.0/28
+add area=cust-vrf-b network=100.123.0.13/32
+/system identity
+set name=R3
+/tool romon
+set enabled=yes
+[9999B[mahyuddin@R3] > /quit
+interrupted
+7[;70r8Connection to 100.121.0.3 closed.
+
+Error: EOF received
